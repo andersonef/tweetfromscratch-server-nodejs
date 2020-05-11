@@ -1,0 +1,30 @@
+{
+  "name": "twitterfromscratch-server-nodejs",
+  "version": "1.0.0",
+  "description": "Backend for \"Twitter from scratch\" project",
+  "main": "src/app.js",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
+    "sha1": "^1.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  },
+  "scripts": {
+    "test": "jest",
+    "dev": "nodemon src/app.js",
+    "run": "node src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andersonef/tweetfromscratch-server-nodejs.git"
+  },
+  "author": "Anderson N. Silva",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andersonef/tweetfromscratch-server-nodejs/issues"
+  },
+  "homepage": "https://github.com/andersonef/tweetfromscratch-server-nodejs#readme"
+}
