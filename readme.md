@@ -24,7 +24,7 @@ You can do it by running the following command lines (I'm assuming you're a linu
 
 # Server APIs
 
-## POST /new-user
+## POST /register
 **Description:** Creates and returns a new user
 
 **Headers:** This endpoint does not require authorization.
@@ -91,7 +91,7 @@ You can do it by running the following command lines (I'm assuming you're a linu
 }
 ```
 
-## POST /new
+## POST /new-tweet
 **Description:** Creates a new tweet message
 
 **Headers:** Authorization: Bearer <access_token>

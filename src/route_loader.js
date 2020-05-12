@@ -14,11 +14,14 @@ function loadRoutes() {
     console.log(`[ROUTE-LOADER] ${controllers.length} controllers loaded`)
     
     function getController (uri, method) {
-        return controllers
+        const controller = controllers
             .find((controller) => {
-                return (controller.uri == uri && controller.method == method)
+                return ((controller.uri  == uri || uri.match(controller.uri)) && controller.method == method)
             })
-            .controller
+        if (!controller) {
+            throw new Error('404 Not found!')
+        }
+        return controller.controller
     }
 
     console.log('[ROUTE-LOADER] Available Endpoints: '.yellow)

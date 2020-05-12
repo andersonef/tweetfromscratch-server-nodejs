@@ -1,4 +1,11 @@
-const users = []
+const users = [{
+    id: 1,
+    name: 'Anderson',
+    email: 'anderson.nuneseth@gmail.com',
+    password: 'cachorro'
+}]
+let logged_user = null
+
 module.exports = {
 
     all() {
@@ -31,5 +38,10 @@ module.exports = {
         newUser.id = Date.now()
         users.push(newUser)
         return newUser
+    },
+
+    login(user_id) {
+        logged_user = this.find(user_id)
+        return logged_user
     }
 }

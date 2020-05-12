@@ -1,15 +1,6 @@
-const user_repository = require('../repositories/user_repository.js')
+const user_repository = require('../repositories/user_repository')
 const access_token_repository = require('../repositories/access_token_repository')
-const response = require('../helpers/response.js')
-
-function validateRequest(request) {
-    if (!request.email) {
-        throw new Error('Email field not found.')
-    }
-    if (!request.password) {
-        throw new Error('Password field not found.')
-    }
-}
+const response = require('../helpers/response')
 
 module.exports = {
     uri: '/auth',
@@ -22,5 +13,14 @@ module.exports = {
         }
         const token = access_token_repository.create(user.id)
         return response(token)
+    }
+}
+
+function validateRequest(request) {
+    if (!request.email) {
+        throw new Error('Email field not found.')
+    }
+    if (!request.password) {
+        throw new Error('Password field not found.')
     }
 }

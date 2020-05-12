@@ -1,6 +1,21 @@
 const user_repository = require('../repositories/user_repository')
 const response = require('../helpers/response')
 
+module.exports = {
+    uri: '/register',
+    method: 'POST',
+    controller(request) {
+        validateRequest(request.body)
+        const user = user_repository.create({
+            name: request.body.name,
+            email: request.body.email,
+            password: request.body.password
+        })
+        return response(user)
+    }
+}
+
+
 function validateRequest(data) {
     if (!data
         || !data.name
@@ -16,19 +31,5 @@ function validateRequest(data) {
     const existent = user_repository.findByEmail(data.email)
     if (existent) {
         throw new Error('Email address already in use')
-    }
-}
-
-module.exports = {
-    uri: '/register',
-    method: 'POST',
-    controller(request) {
-        validateRequest(request.body)
-        const user = user_repository.create({
-            name: request.body.name,
-            email: request.body.email,
-            password: request.body.password
-        })
-        return response(user)
     }
 }
