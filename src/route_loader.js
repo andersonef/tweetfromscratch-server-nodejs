@@ -16,7 +16,12 @@ function loadRoutes() {
     function getController (uri, method) {
         const controller = controllers
             .find((controller) => {
-                return ((controller.uri  == uri || uri.match(controller.uri)) && controller.method == method)
+                let pattern = controller.uri + '$'
+                if (controller.uri.substr(-1) == '%') {
+                    // If controller's route ends with %, I'll accept /controllers-route/[any alphanumeric]
+                    pattern = controller.uri.replace('%', '[A-z,0-9]{1,}$')
+                }
+                return (uri.match(pattern) && controller.method == method)
             })
         if (!controller) {
             throw new Error('404 Not found!')

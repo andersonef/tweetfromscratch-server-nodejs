@@ -9,7 +9,7 @@ const tweet_repository = require('../repositories/tweet_repository')
  *  - I can't retweet the same tweet twice
  */
 module.exports = {
-    uri: '/retweet/[0-9]{1,}$',
+    uri: '/retweet/%',
     method: 'POST',
     controller(request) {
         const user = validateAccessToken(request)

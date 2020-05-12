@@ -12,6 +12,7 @@ function responseParser(rawResponse, httpResponse) {
     try {
         delete rawResponse.statusCode
         httpResponse.write(JSON.stringify(rawResponse))
+        httpResponse.end()
     } catch (e) {
         httpResponse.statusCode = httpConfig.HTTP_STATUS_FAIL
         httpResponse.write(JSON.stringify({
@@ -19,6 +20,5 @@ function responseParser(rawResponse, httpResponse) {
         }))
         console.log('[RESPONSE-PARSER] Could not format response into JSON')
     }
-    httpResponse.end()
 }
 module.exports = responseParser

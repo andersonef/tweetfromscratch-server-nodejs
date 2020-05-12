@@ -11,17 +11,21 @@ function createServer(config = {}) {
 
         const onServerDone = (request, response) => {
             try {
+                
                 request.body = (request.body) ? JSON.parse(request.body) : null
                 const controller = routes.getController(request.url, request.method)
+                
                 const controllerResponse = controller(request)
                 parseResponse(controllerResponse, response)
             } catch (e) {
+                console.log('[SERVER] Failure: ', e)
                 return parseResponse(responseInterface(e, false), response)
             }
         }
         
         const server = http.createServer((request, response) => {   
             let body = ''
+            console.log('[SERVER] New request: ', request.url)
             request.on('data', (chunk) => {
                 body += chunk
             })
