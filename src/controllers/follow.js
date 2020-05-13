@@ -9,7 +9,7 @@ module.exports = {
     method: 'POST',
     controller(request) {
         const followerUser = validateAccessToken(request)
-        const followingUser = user_repository.find(+request.uri.split('/follow/')[1])
+        const followingUser = user_repository.find(+request.url.split('/follow/')[1])
         const connection = connection_repository.create(followerUser, followingUser)
         
         return response(connection)

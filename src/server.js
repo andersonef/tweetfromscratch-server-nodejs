@@ -11,7 +11,10 @@ function createServer(config = {}) {
 
         const onServerDone = (request, response) => {
             try {
-                
+                if (request.method === 'OPTIONS') {
+                    parseOptionsRequest(response)
+                    return
+                }
                 request.body = (request.body) ? JSON.parse(request.body) : null
                 const controller = routes.getController(request.url, request.method)
                 
@@ -25,7 +28,7 @@ function createServer(config = {}) {
         
         const server = http.createServer((request, response) => {   
             let body = ''
-            console.log('[SERVER] New request: ', request.url)
+            console.log('[SERVER] New request: ', request.method,  request.url)
             request.on('data', (chunk) => {
                 body += chunk
             })
@@ -40,6 +43,18 @@ function createServer(config = {}) {
         server.listen(port, config.hostname || 'localhost', () => {
             console.log(`[SERVER] Server running on port ${port}...`)
         })
+    }
+
+    function parseOptionsRequest(response) {
+        console.log('[SERVER] Parsing OPTIONS request');
+        var headers = {};
+        headers["Access-Control-Allow-Origin"] = "*";
+        headers["Access-Control-Allow-Methods"] = "POST, GET, PUT, DELETE, OPTIONS";
+        headers["Access-Control-Allow-Credentials"] = true;
+        headers["Access-Control-Max-Age"] = '86400'; // 24 hours
+        headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Authorization";
+        response.writeHead(200, headers);
+        response.end();
     }
 
     return {

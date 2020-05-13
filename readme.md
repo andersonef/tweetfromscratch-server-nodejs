@@ -32,19 +32,19 @@ You can do it by running the following command lines (I'm assuming you're a linu
 **Body:**
 ```json
 {
-    “name”: “User name”,
-    “email”: “email@example.com”,
-    “password”: “userpassword”
+    "name": "User name",
+    "email": "email@example.com",
+    "password": "userpassword"
 }
 ```
 **Response if success:** (status code 200)
 ```json
 {
-    “status”: “success”,
-    “data”: {
-        “id”: “<user-id>”,
-        “name”: “User name”,
-        “email”: “email@example.com”,
+    "status": "success",
+    "data": {
+        "id": "<user-id>",
+        "name": "User name",
+        "email": "email@example.com",
     }
 }
 ```
@@ -52,8 +52,8 @@ You can do it by running the following command lines (I'm assuming you're a linu
 
 ```json
 {
-    “status”: “error”,
-    “message”: “This email is already used.”
+    "status": "error",
+    "message": "This email is already used."
 }
 ```
 
@@ -66,18 +66,18 @@ You can do it by running the following command lines (I'm assuming you're a linu
 
 ```json
 {
-	“email”: “email@example.com”,
-	“password”: “<user password>”
+	"email": "email@example.com",
+	"password": "<user password>"
 }
 ```
 
 **Response if success:** (status code 200):
 ```json
 {
-	“status”: “success”,
-	“data”: {
-		“access_token”: “<hash>”,
-		“expiry_date”: “<expiry date>”
+	"status": "success",
+	"data": {
+		"access_token": "<hash>",
+		"expiry_date": "<expiry date>"
 	}
 }
 ```
@@ -86,8 +86,8 @@ You can do it by running the following command lines (I'm assuming you're a linu
 
 ```json
 {
-	“status”: “error”,
-	“message”: “Invalid credentials.”
+	"status": "error",
+	"message": "Invalid credentials."
 }
 ```
 
@@ -100,7 +100,7 @@ You can do it by running the following command lines (I'm assuming you're a linu
 
 ```json
 {
-	“message”: “<tweet message>”
+	"message": "<tweet message>"
 }
 ```
 
@@ -108,11 +108,11 @@ You can do it by running the following command lines (I'm assuming you're a linu
 
 ```json
 {
-	“status”: “success”,
-	“data”: {
-		“id”: “<twee id>”,
-		“parent_id”: null,
-		“message”: “<tweet message>”
+	"status": "success",
+	"data": {
+		"id": "<twee id>",
+		"parent_id": null,
+		"message": "<tweet message>"
 	}
 }
 ```
@@ -121,8 +121,8 @@ You can do it by running the following command lines (I'm assuming you're a linu
 
 ```json
 {
-	“status”: “error”,
-	“message”: “Maximum of 240 characters exceeded.”
+	"status": "error",
+	"message": "Maximum of 240 characters exceeded."
 }
 ```
 
@@ -138,12 +138,20 @@ You can do it by running the following command lines (I'm assuming you're a linu
 
 ```json
 {
-	“status”: “success”,
-	“data”: {
-		“id”: “<connection-id.”,
-		“following_date”: “<date>”,
-		“following_user_id”: “<user-id>”,
-		“follower_user_id”: “<authenticated-user-id>”
+	"status": "success",
+	"data": {
+		"id": 1589297711965,
+		"follower_user": {
+		"name": "<follower user name>",
+		"email": "<follower user email>",
+		"id": 1589297704376
+		},
+		"following_user": {
+		"id": 1,
+		"name": "<following user name>",
+		"email": "<following user email>",
+		},
+		"following_date": "<following date>"
 	}
 }
 ```
@@ -152,8 +160,8 @@ You can do it by running the following command lines (I'm assuming you're a linu
 
 ```json
 {
-	“status”: “error”,
-	“message”: “You already follow this user.”
+	"status": "error",
+	"message": "You already follow this user."
 }
 ```
 
@@ -168,8 +176,8 @@ You can do it by running the following command lines (I'm assuming you're a linu
 
 ```json
 {
-	“status”: “success”,
-	“data”: true
+	"status": "success",
+	"data": true
 }
 ```
 
@@ -177,8 +185,8 @@ You can do it by running the following command lines (I'm assuming you're a linu
 
 ```json
 {
-	“status”: “error”,
-	“message”: “The requested user is not on your followers list.”
+	"status": "error",
+	"message": "The requested user is not on your followers list."
 }
 ```
 
@@ -192,7 +200,7 @@ You can do it by running the following command lines (I'm assuming you're a linu
 
 ```json
 {
-	“message”: “<custom-message>”
+	"message": "<custom-message>"
 }
 ```
 
@@ -200,11 +208,11 @@ You can do it by running the following command lines (I'm assuming you're a linu
 
 ```json
 {
-	“status”: “success”,
-	“data”: {
-		“id”: “<twee id>”,
-		“parent_id”: “<tweet-id>”,
-		“message”: “<tweet message>”
+	"status": "success",
+	"data": {
+		"id": "<twee id>",
+		"parent_id": "<tweet-id>",
+		"message": "<tweet message>"
 	}
 }
 ```
@@ -213,7 +221,7 @@ You can do it by running the following command lines (I'm assuming you're a linu
 
 ```json
 {
-	“status”: “error”,
-	“message”: “The tweet id <tweet_id> does not exists.”
+	"status": "error",
+	"message": "The tweet id <tweet_id> does not exists."
 }
 ```

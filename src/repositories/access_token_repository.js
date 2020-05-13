@@ -30,7 +30,7 @@ module.exports = {
     validate(hash) {
         const now = new Date()
         const token = token_list.find((itoken) => {
-            return (itoken.access_token === hash && itoken.expiry_date > now)
+            return (itoken.access_token == hash && itoken.expiry_date > now)
         })
         if (!token) {
             throw new Error('Invalid access token')

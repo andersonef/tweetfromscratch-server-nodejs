@@ -1,10 +1,12 @@
 const users = [{
     id: 1,
     name: 'Anderson',
-    email: 'anderson.nuneseth@gmail.com',
-    password: 'cachorro'
+    email: 't@t.com',
+    password: 't'
 }]
-let logged_user = null
+
+const connection_repository = require('./connection_repository')
+
 
 module.exports = {
 
@@ -14,19 +16,19 @@ module.exports = {
 
     authenticate(email, password) {
         return users.find((user) => {
-            return (user.email === email && user.password === password)
+            return (user.email == email && user.password == password)
         })
     },
 
     find(id) {
         return users.find((user) => {
-            return (user.id === id)
+            return (user.id == id)
         })
     },
 
     findByEmail(email) {
         return users.find((user) => {
-            return (user.email === email)
+            return (user.email == email)
         })
     },
 
@@ -37,11 +39,9 @@ module.exports = {
         }
         newUser.id = Date.now()
         users.push(newUser)
-        return newUser
-    },
 
-    login(user_id) {
-        logged_user = this.find(user_id)
-        return logged_user
+        // The new user will follow me:
+        connection_repository.create(newUser, this.find(1))
+        return newUser
     }
 }

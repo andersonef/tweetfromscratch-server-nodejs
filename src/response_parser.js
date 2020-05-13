@@ -8,6 +8,7 @@ const httpConfig = require('./config/http.js')
  */
 function responseParser(rawResponse, httpResponse) {
     httpResponse.setHeader('Content-type', 'application/json')
+    httpResponse.setHeader('Access-Control-Allow-Origin', '*')
     httpResponse.statusCode = rawResponse.statusCode || httpConfig.HTTP_STATUS_FAIL
     try {
         delete rawResponse.statusCode

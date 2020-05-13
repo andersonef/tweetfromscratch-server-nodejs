@@ -10,7 +10,7 @@ function validateAccessToken(request) {
         throw new Error('Invalid Access Token')
     }
     const access_token = access_token_repository.validate(token[1])
-    return user_repository.login(access_token.user_id)
+    return user_repository.find(access_token.user_id)
 }
 
 module.exports = validateAccessToken

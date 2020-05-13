@@ -1,6 +1,10 @@
 const connections = []
 
 module.exports = {
+
+    all() {
+        return connections
+    },
     getFollowers(user_id) {
         return connections.filter((connection) => {
             return (connection.following_user.id == user_id)
@@ -14,11 +18,11 @@ module.exports = {
     },
 
     create(follower, following) {
-        // 1. This follower is not a new follower
+        // 1. Avoiding duplicate connections
         const existent = this
-            .getFollowers(following.id)
-            .find((ifollower) => {
-                return (ifollower.id == follower.id)
+            .all()
+            .find((connection) => {
+                return (connection.follower_user.id == follower.id && connection.following_user.id == following.id)
             })
         if (existent) {
             throw new Error('You already follow this user')
@@ -31,5 +35,14 @@ module.exports = {
         }
         connections.push(connection)
         return connection
+    },
+
+    delete(follower_id, following_id) {
+        connections.forEach((connection, index) => {
+            if (connection.follower_user.id == follower_id && connection.following_user.id == following_id) {
+                connections.splice(index, 1)
+            }
+        })
+        return true
     }
 }
