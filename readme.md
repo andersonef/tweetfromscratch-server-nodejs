@@ -29,7 +29,7 @@ You can do it by running the following command lines (I'm assuming you're a linu
 
 # Insomnia JSON
 
-You can test each endpoint of this project by using the Insomnia app. Just import the <a href="https://github.com/andersonef/tweetfromscratch-client-react/blob/master/insomnia_api_documentation.json"> **insomnia_api_documentation.json** </a> into your insomnia app.
+You can test each endpoint of this project by using the Insomnia app. Just import the <a href="https://github.com/andersonef/tweetfromscratch-server-nodejs/blob/master/insomnia_api_documentation.json"> **insomnia_api_documentation.json** </a> into your insomnia app.
 There are some endpoints I've created to test the application you can see at insomnia.
 Inside insomnia there's a directory called "Protected". All endpoints inside this directory needs an authorization, so when test them, be sure to use a valid access token. You can obtain a valid access token by consuming **/auth** endpoint.
 
