@@ -8,11 +8,13 @@ module.exports = {
     method: 'GET',
     controller(request) {
         const user = validateAccessToken(request)
-        const users_i_follow = connection_repository.getFollowing(user.id)
+        const connections_i_follow = connection_repository.getFollowing(user.id)
+
         const my_tweets = tweet_repository.fromUsers(
-            users_i_follow.map((follower) => {
-                return follower.id
-            })
+            [...connections_i_follow.map((connection) => {
+                return connection.following_user.id
+            }),
+            user.id]
         )
         return response(my_tweets)
     }

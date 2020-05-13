@@ -6,6 +6,11 @@ Tweet from scratch is a simple twiter-like system composed by two parts, one Rea
  - Node (12 or superior)
  - NPM or Yarn
 
+# Details
+
+ - NodeJS without any framework (just http, fs, sha1 and colors libraries)
+ - In memory storage (you can easily change it by changing the repositories implementation)
+
 # Installing and running
 
 In order to install and run this API server, you need to do the following:
@@ -19,8 +24,18 @@ You can do it by running the following command lines (I'm assuming you're a linu
     $ git clone https://github.com/andersonef/tweetfromscratch-server-nodejs server
     $ cd server
     $ npm install
-    $ node src/app.js
+    $ npm run dev
 ```
+
+# Insomnia JSON
+
+You can test each endpoint of this project by using the Insomnia app. Just import the <a href="https://github.com/andersonef/tweetfromscratch-client-react/blob/master/insomnia_api_documentation.json"> **insomnia_api_documentation.json** </a> into your insomnia app.
+There are some endpoints I've created to test the application you can see at insomnia.
+Inside insomnia there's a directory called "Protected". All endpoints inside this directory needs an authorization, so when test them, be sure to use a valid access token. You can obtain a valid access token by consuming **/auth** endpoint.
+
+# React Client
+
+There's a client for this server you can clone here: <a href="https://github.com/andersonef/tweetfromscratch-client-react"> https://github.com/andersonef/tweetfromscratch-client-react</a>
 
 # Server APIs
 
@@ -223,5 +238,66 @@ You can do it by running the following command lines (I'm assuming you're a linu
 {
 	"status": "error",
 	"message": "The tweet id <tweet_id> does not exists."
+}
+```
+
+## GET /me
+
+**Description**: Retrieve information about the access token owner
+
+**Response if success:** (status code 200)
+
+```json
+{
+  "status": "success",
+  "data": {
+    "name": "<user name>",
+    "email": "<user email>",
+    "id": 1589383807228
+  }
+}
+```
+
+**Response if fail:** (status code 422)
+
+```json
+{
+  "status": "error",
+  "message": "Invalid access token"
+}
+```
+
+## GET /timeline
+
+**Description:** Returns a list of tweets the "logged user" can see. It includes his own tweets and tweets from users he follows.
+
+**Response if success:** (status code 200)
+
+```json
+{
+  "status": "success",
+  "data": [
+    {
+      "id": 1,
+      "date": "2020-05-13T15:22:56.325Z",
+      "parent_id": null,
+      "user": {
+        "id": 1,
+        "name": "Anderson",
+        "email": "t@t.com",
+      },
+      "user_id": 1,
+      "message": "This is a hardcoded tweet. Every new user should see it on their timeline, because everyone here borns following me!"
+    }
+  ]
+}
+```
+
+**Response if fail:** (status code 422)
+
+```json
+{
+  "status": "error",
+  "message": "Invalid access token"
 }
 ```
